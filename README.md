@@ -1,4 +1,4 @@
-PotterTest - By LandMine
+HarryTest - By LandMine
 =========
 
 This is a mod for Minetest-C55 that will add harry potter like elements. It is still in the works, but there are alot of plans for it, below are a few examples of what i am trying to create. It would be great if you could help out.
