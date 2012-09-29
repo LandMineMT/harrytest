@@ -1,0 +1,1 @@
+This folder contains some blocks and items.

@@ -1,10 +1,8 @@
---[[
-****
-HarryTest Mobs
-Credits to PilzAdam for Code
-Version 9.27.12
-****
---]]
+--[
+--PotterTest Mod Made by LandMine
+--This subfolder of the mod contains all mobs
+--Licence: WTFPL 
+--]
 
 dofile(minetest.get_modpath("harrytestmobs").."/api.lua")
 
@@ -24,10 +22,10 @@ mobs:register_mob("harrytestmobs:good_wizard", {
 	run_velocity = 2,
 	damage = 3,
 	drops = {
-		{name = "default:mossycobble",
+		{name = "harrytestmobs:magicdust",
 		chance = 1,
-		min = 3,
-		max = 5,},
+		min = 1,
+		max = 2,},
 	},
 	light_resistant = true,
 	armor = 2,
@@ -38,6 +36,11 @@ mobs:register_mob("harrytestmobs:good_wizard", {
 	attack_type = "dogfight",
 })
 mobs:register_spawn("harrytestmobs:good_wizard", {"default:dirt_with_grass"}, 20, 8, 5000, 0, 31000)
+
+minetest.register_craftitem("harrytestmobs:magicdust", {
+	description = "Magicdust",
+	inventory_image = "blueprint.png",
+})
 
 --- 2. Dark Wizards
 
@@ -54,10 +57,10 @@ mobs:register_mob("harrytestmobs:dark_wizard", {
 	run_velocity = 2,
 	damage = 3,
 	drops = {
-		{name = "default:mossycobble",
+		{name = "harrytestmobs:dark_magicdust",
 		chance = 1,
-		min = 3,
-		max = 5,},
+		min = 1,
+		max = 2,},
 	},
 	light_resistant = true,
 	armor = 2,
@@ -68,3 +71,8 @@ mobs:register_mob("harrytestmobs:dark_wizard", {
 	attack_type = "dogfight",
 })
 mobs:register_spawn("harrytestmobs:dark_wizard", {"default:dirt_with_grass"}, 20, 8, 5000, 0, 31000)
+
+minetest.register_craftitem("harrytestmobs:dark_magicdust", {
+	description = "Dark Magicdust",
+	inventory_image = "darkblueprint.png",
+})

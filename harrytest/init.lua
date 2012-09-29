@@ -1,3 +1,9 @@
+--[
+--PotterTest Mod Made by LandMine
+--This subfolder of the mod contains all items, and blocks
+--Licence: WTFPL 
+--]
+
 -- Items
 
 
@@ -16,4 +22,3 @@ minetest.register_tool("harrytest:wand", {
 		}
 	}
 })
-
