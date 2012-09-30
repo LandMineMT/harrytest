@@ -1,0 +1,1 @@
+This folder contains ingridients for potions.
