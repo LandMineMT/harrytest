@@ -63,7 +63,26 @@ minetest.register_tool("htspells:alohomora", {
 	}
 })
 
-----4. Bombarda - Provokes a small explosion.
+----4. Lumos - Illuminates the tip of the caster's wand.
+minetest.register_tool("htspells:lumos", {
+	description = "Lumos Spell",
+	inventory_image = "lumos.png",
+	tool_capabilities = {
+		full_punch_interval = 1.0,
+		max_drop_level=1,
+		groupcaps={
+			fleshy={times={[1]=2.00, [2]=0.80, [3]=0.40}, uses=10, maxlevel=2},
+			snappy={times={[2]=0.70, [3]=0.30}, uses=40, maxlevel=1},
+			choppy={times={[3]=0.70}, uses=40, maxlevel=0}
+		}
+	},
+	on_use = function(itemstack, user, pointed_thing)
+		minetest.env:set_node(pointed_thing.above, {name="default:torch"})
+	end
+})
+
+
+----5. Bombarda - Provokes a small explosion.
 
 minetest.register_tool("htspells:bombarda", {
 	description = "Bombarda Spell",
