@@ -232,3 +232,62 @@ mobs:register_mob("harrytestmobs:voldemort", {
 })
 mobs:register_spawn("harrytestmobs:voldemort", {"default:dirt_with_grass"}, 20, 8, 5000, 0, 31000)
 
+--- 8. Snape
+
+mobs:register_mob("harrytestmobs:snape", {
+		type = "animal",
+	hp_max = 5,
+	collisionbox = {-0.4, -1, -0.4, 0.4, 1, 0.4},
+	visual = "upright_sprite",
+	visual_size = {x=1, y=2},
+	textures = {"snape_front.png", "snape_back.png"},
+	makes_footstep_sound = true,
+	view_range = 10,
+	walk_velocity = 0.5,
+	run_velocity = 2,
+	damage = 3,
+	drops = {
+		{name = "harrytestmobs:dark_magicdust",
+		chance = 1,
+		min = 1,
+		max = 2,},
+	},
+	light_resistant = true,
+	armor = 2,
+	drawtype = "front",
+	water_damage = 0,
+	lava_damage = 0,
+	light_damage = 0,
+	attack_type = "dogfight",
+})
+mobs:register_spawn("harrytestmobs:snape", {"default:dirt_with_grass"}, 20, 8, 5000, 0, 31000)
+
+--- 9. Hagrid
+
+mobs:register_mob("harrytestmobs:hagrid", {
+		type = "animal",
+	hp_max = 5,
+	collisionbox = {-0.4, -1, -0.4, 0.4, 1, 0.4},
+	visual = "upright_sprite",
+	visual_size = {x=1, y=2},
+	textures = {"hagrid_front.png", "hagrid_back.png"},
+	makes_footstep_sound = true,
+	view_range = 10,
+	walk_velocity = 0.5,
+	run_velocity = 2,
+	damage = 3,
+	drops = {
+		{name = "harrytestmobs:dark_magicdust",
+		chance = 1,
+		min = 1,
+		max = 2,},
+	},
+	light_resistant = true,
+	armor = 2,
+	drawtype = "front",
+	water_damage = 0,
+	lava_damage = 0,
+	light_damage = 0,
+	attack_type = "dogfight",
+})
+mobs:register_spawn("harrytestmobs:hagrid", {"default:dirt_with_grass"}, 20, 8, 5000, 0, 31000)
