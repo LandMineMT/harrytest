@@ -291,3 +291,93 @@ mobs:register_mob("harrytestmobs:hagrid", {
 	attack_type = "dogfight",
 })
 mobs:register_spawn("harrytestmobs:hagrid", {"default:dirt_with_grass"}, 20, 8, 5000, 0, 31000)
+
+--- 10. Mogul #1
+
+mobs:register_mob("harrytestmobs:m1", {
+		type = "animal",
+	hp_max = 5,
+	collisionbox = {-0.4, -1, -0.4, 0.4, 1, 0.4},
+	visual = "upright_sprite",
+	visual_size = {x=1, y=2},
+	textures = {"1_front.png", "1_back.png"},
+	makes_footstep_sound = true,
+	view_range = 10,
+	walk_velocity = 0.5,
+	run_velocity = 2,
+	damage = 3,
+	drops = {
+		{name = "harrytestmobs:dark_magicdust",
+		chance = 1,
+		min = 1,
+		max = 2,},
+	},
+	light_resistant = true,
+	armor = 2,
+	drawtype = "front",
+	water_damage = 0,
+	lava_damage = 0,
+	light_damage = 0,
+	attack_type = "dogfight",
+})
+mobs:register_spawn("harrytestmobs:m1", {"default:dirt_with_grass"}, 20, 8, 5000, 0, 31000)
+
+--- 11. Mogul #2
+
+mobs:register_mob("harrytestmobs:m2", {
+		type = "animal",
+	hp_max = 5,
+	collisionbox = {-0.4, -1, -0.4, 0.4, 1, 0.4},
+	visual = "upright_sprite",
+	visual_size = {x=1, y=2},
+	textures = {"2_front.png", "2_back.png"},
+	makes_footstep_sound = true,
+	view_range = 10,
+	walk_velocity = 0.5,
+	run_velocity = 2,
+	damage = 3,
+	drops = {
+		{name = "harrytestmobs:dark_magicdust",
+		chance = 1,
+		min = 1,
+		max = 2,},
+	},
+	light_resistant = true,
+	armor = 2,
+	drawtype = "front",
+	water_damage = 0,
+	lava_damage = 0,
+	light_damage = 0,
+	attack_type = "dogfight",
+})
+mobs:register_spawn("harrytestmobs:m2", {"default:dirt_with_grass"}, 20, 8, 5000, 0, 31000)
+
+--- 12. Mogul #3
+
+mobs:register_mob("harrytestmobs:m3", {
+		type = "animal",
+	hp_max = 5,
+	collisionbox = {-0.4, -1, -0.4, 0.4, 1, 0.4},
+	visual = "upright_sprite",
+	visual_size = {x=1, y=2},
+	textures = {"3_front.png", "3_back.png"},
+	makes_footstep_sound = true,
+	view_range = 10,
+	walk_velocity = 0.5,
+	run_velocity = 2,
+	damage = 3,
+	drops = {
+		{name = "harrytestmobs:dark_magicdust",
+		chance = 1,
+		min = 1,
+		max = 2,},
+	},
+	light_resistant = true,
+	armor = 2,
+	drawtype = "front",
+	water_damage = 0,
+	lava_damage = 0,
+	light_damage = 0,
+	attack_type = "dogfight",
+})
+mobs:register_spawn("harrytestmobs:m3", {"default:dirt_with_grass"}, 20, 8, 5000, 0, 31000)
