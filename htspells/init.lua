@@ -1,6 +1,7 @@
 spells = {
 	{"htspells:spell", "htspells:spell_entity"},
 	{"htspells:spell_fire", "htspells:spell_fire_entity"},
+    {"htspells:spell_water", "htspells:spell_water_entity"},
 }
 
 local htspells_shoot_spell = function(itemstack, player)
@@ -91,6 +92,4 @@ minetest.register_craft({
 
 dofile(minetest.get_modpath("htspells").."/spell.lua")
 dofile(minetest.get_modpath("htspells").."/fire_spell.lua")
-dofile(minetest.get_modpath("htspells").."/teleport_spell.lua")
-dofile(minetest.get_modpath("htspells").."/dig_spell.lua")
-dofile(minetest.get_modpath("htspells").."/build_spell.lua")
+dofile(minetest.get_modpath("htspells").."/water_spell.lua")
