@@ -1,124 +1,99 @@
---[
---PotterTest Mod Made by LandMine
---This subfolder of the mod contains all spells
---Licence: WTFPL 
---]
+spells = {
+	{"htspells:spell", "htspells:spell_entity"},
+	{"htspells:spell_fire", "htspells:spell_fire_entity"},
+	{"htspells:spell_teleport", "htspells:spell_teleport_entity"},
+	{"htspells:spell_dig", "htspells:spell_dig_entity"},
+	{"htspells:spell_build", "htspells:spell_build_entity"}
+}
 
----Functions
-
-
--- Spells
-
-
-----1. Aguamenti - Sends out water
-
-minetest.register_tool("htspells:aguamenti", {
-	description = "Aguamenti Spell",
-	inventory_image = "aqua.png",
-	tool_capabilities = {
-		full_punch_interval = 1.0,
-		max_drop_level=1,
-		groupcaps={
-			fleshy={times={[1]=2.00, [2]=0.80, [3]=0.40}, uses=10, maxlevel=2},
-			snappy={times={[2]=0.70, [3]=0.30}, uses=40, maxlevel=1},
-			choppy={times={[3]=0.70}, uses=40, maxlevel=0}
-		}
-	},
-	on_use = function(itemstack, user, pointed_thing)
-		minetest.env:set_node(pointed_thing.above, {name="default:water_source"})
+local htspells_shoot_spell = function(itemstack, player)
+	for _,stack in ipairs(player:get_inventory():get_list("main")) do
+		for _,spell in ipairs(spells) do
+			if stack:get_name() == spell[1] then
+				player:get_inventory():remove_item("main", spell[1])
+				local playerpos = player:getpos()
+				local obj = minetest.env:add_entity({x=playerpos.x,y=playerpos.y+1.5,z=playerpos.z}, spell[2])
+				local dir = player:get_look_dir()
+				obj:setvelocity({x=dir.x*19, y=dir.y*19, z=dir.z*19})
+				obj:setacceleration({x=dir.x*-3, y=-10, z=dir.z*-3})
+				obj:setyaw(player:get_look_yaw()+math.pi)
+				minetest.sound_play("throwing_sound", {pos=playerpos})
+				if obj:get_luaentity().player == "" then
+					obj:get_luaentity().player = player
+				end
+				obj:get_luaentity().node = player:get_inventory():get_stack("main", 1):get_name()
+				return true
+			end
+		end
 	end
+	return false
+end
+
+minetest.register_tool("htspells:wand_basic", {
+	description = "Basic Wand",
+	inventory_image = "wand2.png",
+    stack_max = 1,
+	on_use = function(itemstack, user, pointed_thing)
+		if htspells_shoot_spell(itemstack, user, pointed_thing) then
+			itemstack:add_wear(65535/50)
+		end
+		return itemstack
+	end,
 })
 
-----2. Incendio - Sends out fire
-
-minetest.register_tool("htspells:incendio", {
-	description = "Inendio Spell",
-	inventory_image = "flame.png",
-	tool_capabilities = {
-		full_punch_interval = 1.0,
-		max_drop_level=1,
-		groupcaps={
-			fleshy={times={[1]=2.00, [2]=0.80, [3]=0.40}, uses=10, maxlevel=2},
-			snappy={times={[2]=0.70, [3]=0.30}, uses=40, maxlevel=1},
-			choppy={times={[3]=0.70}, uses=40, maxlevel=0}
-		}
-	},
-	on_use = function(itemstack, user, pointed_thing)
-		minetest.env:set_node(pointed_thing.above, {name="fire:basic_flame"})
-	end
-})
-
-----3. Alohomora - Unlocks doors
-minetest.register_tool("htspells:alohomora", {
-	description = "Alohomora Spell",
-	inventory_image = "key.png",
-	tool_capabilities = {
-		full_punch_interval = 1.0,
-		max_drop_level=1,
-		groupcaps={
-			fleshy={times={[1]=2.00, [2]=0.80, [3]=0.40}, uses=10, maxlevel=2},
-			snappy={times={[2]=0.70, [3]=0.30}, uses=40, maxlevel=1},
-			choppy={times={[3]=0.70}, uses=40, maxlevel=0}
-		}
+minetest.register_craft({
+	output = 'htspells:wand_basic',
+	recipe = {
+		{'', '', ''},
+		{'', 'default:stick', ''},
+		{'default:stick', 'default:stick', 'default:stick'},
 	}
 })
 
-----4. Lumos - Illuminates the tip of the caster's wand.
-minetest.register_tool("htspells:lumos", {
-	description = "Lumos Spell",
-	inventory_image = "lumos.png",
-	tool_capabilities = {
-		full_punch_interval = 1.0,
-		max_drop_level=1,
-		groupcaps={
-			fleshy={times={[1]=2.00, [2]=0.80, [3]=0.40}, uses=10, maxlevel=2},
-			snappy={times={[2]=0.70, [3]=0.30}, uses=40, maxlevel=1},
-			choppy={times={[3]=0.70}, uses=40, maxlevel=0}
-		}
-	},
+minetest.register_tool("htspells:wand_normal", {
+	description = "Wand",
+	inventory_image = "wand3.png",
+    stack_max = 1,
 	on_use = function(itemstack, user, pointed_thing)
-		minetest.env:set_node(pointed_thing.above, {name="default:torch"})
-	end
-})
-
-
-----5. Bombarda - Provokes a small explosion.
-
-minetest.register_tool("htspells:bombarda", {
-	description = "Bombarda Spell",
-	inventory_image = "flame.png",
-	tool_capabilities = {
-		full_punch_interval = 1.0,
-		max_drop_level=1,
-		groupcaps={
-			fleshy={times={[1]=2.00, [2]=0.80, [3]=0.40}, uses=10, maxlevel=2},
-			snappy={times={[2]=0.70, [3]=0.30}, uses=40, maxlevel=1},
-			choppy={times={[3]=0.70}, uses=40, maxlevel=0}
-		}
-	},
-	on_use = function(itemstack, user, pointed_thing)
-		boom(pos)
-	end
-})
-
-minetest.register_entity("htspells:smoke", {
-	physical = true,
-	visual = "sprite",
-	textures = {"smoke.png"},
-	collisionbox = {0,0,0,0,0,0},
-	
-	timer = 0,
-	time = 5,
-	
-	on_activate = function(self, staticdata)
-		self.object:setacceleration({x=math.random(0,10)/10-0.5, y=5, z=math.random(0,10)/10-0.5})
-		self.time = math.random(1, 10)/10
-	end,
-	
-	on_step = function(self, dtime)
-		self.timer = self.timer+dtime
-		if self.timer > self.time then
-			self.object:remove()
+		if htspells_shoot_spell(item, user, pointed_thing) then
+			itemstack:add_wear(65535/100)
 		end
+		return itemstack
 	end,
 })
+
+minetest.register_craft({
+	output = 'htspells:wand_normal',
+	recipe = {
+		{'', '', ''},
+		{'default:stick', 'default:stick', 'default:stick'},
+		{'default:stick', 'default:stick', 'default:stick'},
+	}
+})
+
+minetest.register_tool("htspells:wand_advanced", {
+	description = "Advanced Wand",
+	inventory_image = "wand4.png",
+    stack_max = 1,
+	on_use = function(itemstack, user, pointed_thing)
+		if htspells_shoot_spell(item, user, pointed_thing) then
+			itemstack:add_wear(65535/200)
+		end
+		return itemstack
+	end,
+})
+
+minetest.register_craft({
+	output = 'htspells:wand_advanced',
+	recipe = {
+		{'', '', ''},
+		{'default:stick', 'default:stick', ''},
+		{'default:stick', 'default:stick', 'default:stick'},
+	}
+})
+
+dofile(minetest.get_modpath("htspells").."/spell.lua")
+dofile(minetest.get_modpath("htspells").."/fire_spell.lua")
+dofile(minetest.get_modpath("htspells").."/teleport_spell.lua")
+dofile(minetest.get_modpath("htspells").."/dig_spell.lua")
+dofile(minetest.get_modpath("htspells").."/build_spell.lua")

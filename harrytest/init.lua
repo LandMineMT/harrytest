@@ -152,7 +152,7 @@ end
 
 local on_mdoor_punched = function( pos, node, puncher )
 local tool = puncher:get_wielded_item():get_name()
-		if tool and tool == "htspells:alohomora" then
+		if tool and tool == "unlockcharm:alohomora" then
 	 if string.find( node.name, 'harrytest:mdoor_wood' ) == nil then return end
 
 	local upos = { x = pos.x, y = pos.y - 1, z = pos.z }
