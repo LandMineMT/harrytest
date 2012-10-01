@@ -1,9 +1,6 @@
 spells = {
 	{"htspells:spell", "htspells:spell_entity"},
 	{"htspells:spell_fire", "htspells:spell_fire_entity"},
-	{"htspells:spell_teleport", "htspells:spell_teleport_entity"},
-	{"htspells:spell_dig", "htspells:spell_dig_entity"},
-	{"htspells:spell_build", "htspells:spell_build_entity"}
 }
 
 local htspells_shoot_spell = function(itemstack, player)
